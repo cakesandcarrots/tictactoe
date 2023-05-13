@@ -6,16 +6,24 @@
     width: 100vw;
     display: flex;
     flex-direction: column;
+    background-color: red;
 }
 
+
+.playertext {
+    background-color: aqua;
+    margin-top: 35vh;
+    font-family: 'Titillium Web', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
 
 .board {
     font-family: 'Titillium Web', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     font-size: x-large;
-    margin-top: 45vh;
     margin-bottom: 35vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    background-color: pink;
 }

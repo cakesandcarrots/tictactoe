@@ -1,8 +1,11 @@
 
 let displayboard = document.querySelector(".board");
+let playername = document.querySelector('.playername');
+let playersymbol = document.querySelector('.playersymbol');
+
 let board = [['I', 'I', 'I'], ['I', 'I', 'I'], ['I', 'I', 'I']];
-const p1 = player("max");
-const p2 = player("bruce");
+const p1 = player("Max", "X");
+const p2 = player("Bruce", "O");
 let playerturn = p1;
 
 function wincondition() {
@@ -23,35 +26,41 @@ function displayController() {
 
 document.addEventListener("DOMContentLoaded", event => {
     displayController();
+    playername.textContent = "Current player : " + playerturn.firstname
+    playersymbol.textContent = "Symbol : " + playerturn.symbol
 });
 
 
 
 displayboard.addEventListener('click', (event) => {
-
     unit = event.target;
     row = unit.parentNode.rowIndex;
     col = unit.cellIndex;
+    let check = 0;
     if (board[row][col] == 'I') {
-        if (playerturn == p1)
-            board[row][col] = 'X';
+        board[row][col] = playerturn.symbol;
+        check = 1;
+        if (playerturn == p1) {
+            playerturn = p2;
+        }
         else {
-            board[row][col] = 'Y';
-
+            playerturn = p1;
         }
     }
-    if (playerturn == p1) {
-        playerturn = p2;
-    }
-    else {
-        playerturn = p1;
-    }
+
     displayController();
+    wincondition();
+    if (check == 1) {
+        playername.textContent = "Current player : " + playerturn.firstname;
+        playersymbol.textContent = "Symbol : " + playerturn.symbol
+    }
+
 })
 
-function player(firstname,) {
+function player(firstname, symbol) {
     return {
         firstname: firstname,
+        symbol: symbol
 
     };
 
