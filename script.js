@@ -4,6 +4,7 @@ let playername = document.querySelector('.playername');
 let playersymbol = document.querySelector('.playersymbol');
 let disable = 0;
 let win;
+let counter = 0;
 
 let board = [['~', '~', '~'], ['~', '~', '~'], ['~', '~', '~']];
 const p1 = player("Max", "X");
@@ -89,12 +90,14 @@ displayboard.addEventListener('click', (event) => {
         col = unit.cellIndex;
         let check = 0;
         if (board[row][col] == '~') {
+            counter++;
             board[row][col] = playerturn.symbol;
             displayController();
             win = wincondition(row, col);
             if (win == true) {
                 playername.textContent = "Congrats, you won: " + playerturn.firstname
                 disable = 1;
+                return;
             }
             check = 1;
             if (playerturn == p1) {
@@ -103,6 +106,12 @@ displayboard.addEventListener('click', (event) => {
             else {
                 playerturn = p1;
             }
+        }
+
+        if (counter == 9) {
+            playername.textContent = "DRAW"
+            playersymbol.textContent = "";
+            return;
         }
 
 
